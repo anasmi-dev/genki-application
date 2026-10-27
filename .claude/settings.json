@@ -1,0 +1,10 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read|Edit|Write|Bash",
+        "hooks": [{ "type": "command", "command": ".claude/hooks/block-sensitive.sh" }]
+      }
+    ]
+  }
+}

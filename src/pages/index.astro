@@ -1,0 +1,186 @@
+---
+import '../styles/global.scss'
+import claudeMd from '../../CLAUDE.md?raw'
+import hook from '../../.claude/hooks/block-sensitive.sh?raw'
+import ci from '../../.github/workflows/ci.yml?raw'
+
+const github = 'https://github.com/anasmi-dev'
+const repo = 'https://github.com/anasmi-dev/genki-application'
+const email = 'anasmohammeddev@gmail.com'
+
+const flow = [
+  { title: 'Idea', text: 'Anyone at Genki describes what they need.' },
+  { title: 'Prompt', text: 'Claude Code works inside a template repo with our rules.' },
+  { title: 'Guardrails', text: 'Hooks block secrets. Lint, types and tests run locally.' },
+  { title: 'Preview', text: 'Every PR gets a Cloudflare preview URL to click through.' },
+  { title: 'Review', text: 'A web engineer reviews the diff. Always a human.' },
+  { title: 'Ship', text: 'Merge deploys. Rollback is one click.' },
+]
+
+const plan = [
+  {
+    when: 'First 30 days',
+    what: 'Read every web project, ship small fixes to learn the code, and map what is shared and what has grown on its own. One CI setup for all repos. A clear plan to finish moving off Next.js.',
+  },
+  {
+    when: 'By 60 days',
+    what: 'A shared component library and design tokens built with your designer from Figma. A template repo with CLAUDE.md, hooks, checks and Cloudflare previews baked in.',
+  },
+  {
+    when: 'By 90 days',
+    what: 'Open the paved road to the first non-engineers. Measure what they ship, what breaks, and what review catches, then tighten the rails based on real use.',
+  },
+]
+
+const jobs = [
+  { when: '2025 - now', where: 'Tempo (YC S23)', what: 'Founding / senior full stack engineer. React, Next.js and TypeScript on Node and GraphQL. LLM agents in production. Work directly with client teams.' },
+  { when: '2022 - 2024', where: 'FusionCode', what: 'Team lead. Owned architecture across React/TypeScript and Node, ran code reviews and sprints, mentored engineers, worked side by side with designers.' },
+  { when: '2019 - 2022', where: 'Ample', what: 'Senior engineer and de facto tech lead. Built a GraphQL layer from scratch to replace a messy REST setup.' },
+  { when: '2018 - 2019', where: 'Modus Create', what: 'Led client projects. Fast, accessible React and Next.js frontends where load time was a hard requirement.' },
+  { when: '2016 - 2018', where: 'Digicust', what: 'Full stack web apps from the ground up, plus data visualization tools.' },
+]
+
+const prompts = [
+  `Plan only, don't edit yet. We have 3 landing pages that each copy the same pricing table. Find every copy, list the differences, and propose one shared component with props for the differences. Show me the plan.`,
+  `Write the failing test first: x-metadata that decodes to null, an array or a number must not be saved as user metadata. Then make it pass with the smallest change. Don't touch unrelated files.`,
+  `Review this diff like a strict senior engineer. Look for security issues, missing edge cases and anything that breaks our CLAUDE.md rules. Be specific, no praise.`,
+]
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>Anas Mohammed - Lead Web Engineer application for Genki</title>
+    <meta name="description" content="My application for the Lead Web Engineer role at Genki, built with Claude Code and the same guardrails I'd set up for your team." />
+  </head>
+  <body>
+    <main>
+      <header class="wrap">
+        <section class="hero">
+          <span class="eyebrow">Application · Lead Web Engineer · Genki</span>
+          <h1>Hi Genki, I'm Anas.</h1>
+          <p class="lead">
+            Senior full stack engineer with 10+ years of shipping web apps. You asked for a vibe-coded application,
+            so I built one. Then I reviewed every line, because that's the part that matters.
+          </p>
+          <div class="btns">
+            <a class="btn primary" href={`mailto:${email}`}>Email me</a>
+            <a class="btn" href="/Anas_Mohammed_Resume.pdf">Resume (PDF)</a>
+            <a class="btn" href={repo}>See this site's repo</a>
+          </div>
+        </section>
+      </header>
+
+      <section>
+        <div class="wrap">
+          <span class="eyebrow">The short version</span>
+          <div class="grid">
+            <div class="card"><div class="stat">10+ years</div><p>Building and shipping production web apps, from static sites to complex React apps.</p></div>
+            <div class="card"><div class="stat">Founding engineer</div><p>At Tempo (YC S23). Comfortable being the only web person and building the foundations.</p></div>
+            <div class="card"><div class="stat">Team lead</div><p>Set up reviews, standards and architecture for a team at FusionCode, and mentored engineers.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <span class="eyebrow">The part of the job I'm most excited about</span>
+          <h2>How I'd let everyone at Genki ship safely</h2>
+          <p class="lead">
+            Letting non-engineers build is only scary when the safety lives in people's heads. Put it in the tools
+            and the default path becomes the safe path.
+          </p>
+          <ol class="flow">
+            {flow.map((s) => (<li><strong>{s.title}</strong><span>{s.text}</span></li>))}
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <span class="eyebrow">This page is the proof</span>
+          <h2>The guardrails behind this site</h2>
+          <p class="muted">These are the real files from this repo, loaded at build time. It's a small version of the setup I'd build for your team.</p>
+          <details open>
+            <summary>CLAUDE.md: the rules every human and agent follows</summary>
+            <pre><code>{claudeMd}</code></pre>
+          </details>
+          <details>
+            <summary>A PreToolUse hook that blocks the agent from touching secrets</summary>
+            <pre><code>{hook}</code></pre>
+          </details>
+          <details>
+            <summary>CI: the same checks run on every pull request</summary>
+            <pre><code>{ci}</code></pre>
+          </details>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <span class="eyebrow">You asked for prompts</span>
+          <h2>How I steer agents</h2>
+          <p class="muted">Plan before code, tests before fixes, and a hard review at the end. A few prompts in the style I use every day:</p>
+          <div class="grid">
+            {prompts.map((p) => (<blockquote class="prompt">{p}</blockquote>))}
+          </div>
+          <p class="muted">
+            When do I not trust the output? Auth, payments, data migrations and anything touching personal or health
+            data. The agent can help me think there, but I write and own that code.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <span class="eyebrow">If I join</span>
+          <h2>My first 90 days</h2>
+          <ul class="timeline">
+            {plan.map((p) => (<li><span class="when">{p.when}</span><span>{p.what}</span></li>))}
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <span class="eyebrow">Where I've been</span>
+          <h2>Experience</h2>
+          <ul class="timeline">
+            {jobs.map((j) => (<li><span class="when">{j.when}</span><span><strong>{j.where}.</strong> {j.what}</span></li>))}
+          </ul>
+          <h3 class="spaced">Things I've shipped</h3>
+          <div class="grid">
+            <div class="card"><h3>Meetex</h3><p>A meetup app for expats in Dubai, built solo and live on the App Store, with its own landing page.</p></div>
+            <div class="card"><h3>RentManager</h3><p>React and Vite on Supabase, deployed on Vercel. Runs billing for my 16 rental flats.</p></div>
+            <div class="card"><h3>supabase/storage</h3><p>An open source PR that validates user metadata in the upload path, with unit tests.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap honest">
+          <span class="eyebrow">Honest notes</span>
+          <h2>What I'd ramp up on</h2>
+          <p>
+            Astro, Cloudflare and Railway are new to me. This site is my first Astro build and my first Cloudflare
+            Pages deploy, so I've already started. They're close to what I use every day (Vite, Vercel, Supabase).
+          </p>
+          <p>
+            I'm based in Dubai, 2 to 3 hours ahead of Germany, so your German business hours fit right into my day.
+            And as an expat myself, health cover abroad is a problem I understand.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        Built with Astro and Claude Code, reviewed by a human, hosted on Cloudflare Pages.
+        <a href={github}>GitHub</a> · <a href={`mailto:${email}`}>{email}</a>
+      </div>
+    </footer>
+  </body>
+</html>

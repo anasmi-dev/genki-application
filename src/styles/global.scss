@@ -1,0 +1,170 @@
+$max: 960px;
+
+:root {
+  --bg: #f7f5ef;
+  --surface: #ffffff;
+  --ink: #17201b;
+  --muted: #5b6660;
+  --line: #e3e0d6;
+  --accent: #0f7a55;
+  --accent-soft: #e2f2ea;
+  --code-bg: #14201a;
+  --code-ink: #d9efe3;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1512;
+    --surface: #161e1a;
+    --ink: #e8efe9;
+    --muted: #9aa8a0;
+    --line: #26322c;
+    --accent: #3fc08a;
+    --accent-soft: #1b2e25;
+    --code-bg: #0a0f0c;
+    --code-ink: #cfe9da;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+.wrap { max-width: $max; margin: 0 auto; padding: 0 20px; }
+
+section { padding: 64px 0; border-top: 1px solid var(--line); }
+
+h1, h2, h3 { line-height: 1.2; letter-spacing: -0.02em; margin: 0 0 12px; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); }
+h2 { font-size: clamp(1.5rem, 3.5vw, 2.1rem); }
+h3 { font-size: 1.1rem; }
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.lead { font-size: 1.2rem; color: var(--muted); max-width: 640px; }
+.muted { color: var(--muted); }
+
+.btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.btn {
+  display: inline-block;
+  padding: 11px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: var(--surface);
+  &.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+}
+
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px;
+  p { margin: 0; color: var(--muted); }
+}
+
+.stat { font-size: 1.6rem; font-weight: 700; color: var(--accent); }
+
+.flow {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  @media (max-width: 640px) { grid-template-columns: repeat(2, 1fr); }
+  counter-reset: step;
+  li {
+    counter-increment: step;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 0.95rem;
+    &::before {
+      content: counter(step);
+      display: inline-grid;
+      place-items: center;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-bottom: 6px;
+    }
+    strong { display: block; }
+    span { color: var(--muted); }
+  }
+}
+
+.timeline {
+  list-style: none; padding: 0; margin: 0;
+  li { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px dashed var(--line); }
+  .when { color: var(--muted); font-size: 0.9rem; }
+  @media (max-width: 600px) { li { grid-template-columns: 1fr; gap: 2px; } }
+}
+
+details {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin-top: 12px;
+  summary { cursor: pointer; padding: 14px 18px; font-weight: 600; }
+  pre { margin: 0; border-radius: 0 0 12px 12px; }
+}
+
+pre {
+  background: var(--code-bg);
+  color: var(--code-ink);
+  padding: 18px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+blockquote.prompt {
+  margin: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  padding: 16px 18px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.88rem;
+  white-space: pre-wrap;
+}
+
+.honest { background: var(--accent-soft); border-radius: 14px; padding: 22px; }
+
+footer { padding: 40px 0 60px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+
+.hero { border-top: 0; padding-top: 88px; }
+.spaced { margin-top: 36px; }
